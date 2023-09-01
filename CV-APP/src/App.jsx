@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { General } from './assets/components/Form'
+import { PersonalInfo, EducationInfo } from './assets/components/Form'
 import './App.css'
 
 function App() {
@@ -7,7 +7,10 @@ function App() {
 
   return (
     <>
-    <General />
+    <h1>Personal Info:</h1>
+    <PersonalInfo />
+    <h1>Educational Info</h1>
+    <EducationInfo />
     </>
   )
 }
