@@ -9,7 +9,7 @@ function App() {
     <>
     <h1>Personal Info:</h1>
     <PersonalInfo />
-    <h1>Educational Info</h1>
+    <h1>Education Info</h1>
     <EducationInfo />
     </>
   )
