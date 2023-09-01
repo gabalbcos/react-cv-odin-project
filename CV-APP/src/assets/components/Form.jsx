@@ -28,9 +28,10 @@ function General() {
     <label htmlFor="about">About:</label>
     <input type="text" id="aboute" name="about" value={formData.about} onChange={handleChange}/></>)
 :
-    (<><p>{formData.name}</p>
-    <p>{formData.email}</p>
-    <p>{formData.about}</p></>)}
+    (<>
+    <p>Name: {formData.name}</p>
+    <p>E-mail: {formData.email}</p>
+    <p>About: {formData.about}</p></>)}
     <input type='button' name="isEditing" id="isEditing" value={formData.buttonText} onClick={handleClick}/>
     </div>
     )
