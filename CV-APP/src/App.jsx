@@ -11,6 +11,7 @@ function App() {
     <PersonalInfo />
     <h1>Education Info</h1>
     <EducationInfo />
+    <h1>Experience</h1>
     </>
   )
 }
