@@ -1,6 +1,6 @@
-import React from 'react'
 import { Button, Form } from 'semantic-ui-react'
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function Create() {
     const [companyName, setCompanyName] = useState('');
@@ -8,10 +8,12 @@ export default function Create() {
     const [startDate, setStartDate] = useState('');
     const [finishDate, setFinishDate] = useState('');
     const postData = () => {
-        console.log(companyName);
-        console.log(jobTitle);
-        console.log(startDate);
-        console.log(finishDate);
+        axios.post(`https://64f62e062b07270f705e4047.mockapi.io/jobExperiences`, {
+            companyName,
+            jobTitle,
+            startDate,
+            finishDate
+        });
     }
     return(
     <div>        
