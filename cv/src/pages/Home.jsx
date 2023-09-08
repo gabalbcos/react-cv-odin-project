@@ -32,6 +32,15 @@ const Home = () => {
       setRender(true);
     }
 
+    const handleDelete = async (id) => {
+      await axios.delete(`http://localhost:8000/jobExperience/${id}`);
+
+      const newJobExp = jobExpData.filter((exp) => {
+        return exp.id !== id;
+      }) ;
+      setJobExp(newJobExp);
+    } 
+
   return (
     <div>
        <h1>CRUD - Job Experience Form</h1>
@@ -56,6 +65,14 @@ const Home = () => {
               <td>Name: {job.positionName}</td>
               <td>Start:{job.startDate}</td>
               <td>End:{job.endDate}</td>
+              <td>
+                <Link to={`/edit/${job.id}`}>
+                  <button>Edit</button>
+                </Link>
+              </td>
+              <td>
+                <button onClick={() => handleDelete(job.id)}>Delete</button>                
+              </td>
             </tr>
           )
         })
