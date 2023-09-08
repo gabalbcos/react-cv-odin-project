@@ -1,7 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Link } from "react-router-dom";
 
 const Home = () => {
     const [jobExpData, setJobExp] = useState([]);
@@ -65,11 +64,6 @@ const Home = () => {
               <td>Name: {job.positionName}</td>
               <td>Start:{job.startDate}</td>
               <td>End:{job.endDate}</td>
-              <td>
-                <Link to={`/edit/${job.id}`}>
-                  <button>Edit</button>
-                </Link>
-              </td>
               <td>
                 <button onClick={() => handleDelete(job.id)}>Delete</button>                
               </td>
