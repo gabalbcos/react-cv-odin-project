@@ -1,49 +1,65 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
-import link from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-    const [jobExpData, setJobExp] = useState({
-        companyName: '',
-        positionName: '',
-        startDate: '',
-        endDate:''
-      });
-    const valueInput = (e) => setJobExp({...jobExpData, [e.target.name]: e.target.value});
-    
-    const addJobExp = (e) => {
-      e.preventDefault();
-      console.log('Mandou para a API');
-      console.log("Info: " + jobExpData.companyName)
-    };
+    const [jobExpData, setJobExp] = useState([]);
+    const [jobInput, setInput] = useState({
+      companyName: "",
+      jobTitle: "",
+      startDate: "",
+      endDate: ""
+    });
+    const [render, setRender] = useState(false);
     
     useEffect(() => {
       try {
         const getAllData = async () => {
-          const res = await axios.get("http://localhost:8000/jobExperience")
+          const res = await axios.get("http://localhost:8000/jobExperience");
+          setJobExp(res.data);
         };
         getAllData();
 
        } catch(error) {
           console.log(error)
         }
-    }, [];)
+    }, [render]);
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      await axios.post("http://localhost:8000/jobExperience", jobInput)
+      setRender(true);
+    }
+
   return (
     <div>
        <h1>CRUD - Job Experience Form</h1>
        <h2>Job Experience</h2>
-       <form onSubmit={addJobExp}>
+       <form onSubmit={handleSubmit}>
         <label>Company Name:</label>
-        <input type='text' name='companyName' placeholder='Type company name' onChange={valueInput} value={jobExpData.companyName}/><br/><br/>
+        <input type='text' name='companyName' placeholder='Type company name' onChange={(e) => setInput({...jobInput, [e.target.name]: e.target.value})} value={jobInput.name}/><br/><br/>
         <label>Position Name:</label>
-        <input type='text' name='positionName' placeholder='Type the name of your position' onChange={valueInput} value={jobExpData.positionName}/><br/><br/>
+        <input type='text' name='positionName' placeholder='Type the name of your position' onChange={(e) => setInput({...jobInput, [e.target.name]: e.target.value})} value={jobInput.name}/><br/><br/>
         <label>Start Date:</label>
-        <input type='date' name='startDate' onChange={valueInput} value={jobExpData.startDate}/><br/><br/>
+        <input type='date' name='startDate' onChange={(e) => setInput({...jobInput, [e.target.name]: e.target.value})} value={jobInput.name}/><br/><br/>
         <label>End Date:</label>
-        <input type='date' name='endDate' onChange={valueInput} value={jobExpData.endDate}/><br/><br/>
+        <input type='date' name='endDate'onChange={(e) => setInput({...jobInput, [e.target.name]: e.target.value})} value={jobInput.name}/><br/><br/>
         <button type='submit'>Submit</button>
-       </form>  
+        </form>  
+
+       {
+        jobExpData && jobExpData.map((job) => {
+          return(
+            <tr>
+              <td>Company:{job.companyName}</td>
+              <td>Name: {job.positionName}</td>
+              <td>Start:{job.startDate}</td>
+              <td>End:{job.endDate}</td>
+            </tr>
+          )
+        })
+       }
     </div>
   )
 }
