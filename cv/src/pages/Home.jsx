@@ -44,17 +44,19 @@ const Home = () => {
     <div>
        <h1>CRUD - Job Experience Form</h1>
        <h2>Job Experience</h2>
-       <form onSubmit={handleSubmit}>
-        <label>Company Name:</label>
-        <input type='text' name='companyName' placeholder='Type company name' onChange={(e) => setInput({...jobInput, [e.target.name]: e.target.value})} value={jobInput.name}/><br/><br/>
-        <label>Position Name:</label>
-        <input type='text' name='positionName' placeholder='Type the name of your position' onChange={(e) => setInput({...jobInput, [e.target.name]: e.target.value})} value={jobInput.name}/><br/><br/>
-        <label>Start Date:</label>
-        <input type='date' name='startDate' onChange={(e) => setInput({...jobInput, [e.target.name]: e.target.value})} value={jobInput.name}/><br/><br/>
-        <label>End Date:</label>
-        <input type='date' name='endDate'onChange={(e) => setInput({...jobInput, [e.target.name]: e.target.value})} value={jobInput.name}/><br/><br/>
-        <button type='submit'>Submit</button>
-        </form>  
+       <div className="mb-3">
+         <form onSubmit={handleSubmit}>
+          <label className='form-label'for='companyNameField'>Company Name:</label>
+          <input className='form-control' id='companyNameField' type='text' name='companyName' placeholder='Type company name' onChange={(e) => setInput({...jobInput, [e.target.name]: e.target.value})} value={jobInput.name}/><br/><br/>
+          <label className='form-label'for='positionName'>Position Name:</label>
+          <input className='form-control' id='positionName' type='text' name='positionName' placeholder='Type the name of your position' onChange={(e) => setInput({...jobInput, [e.target.name]: e.target.value})} value={jobInput.name}/><br/><br/>
+          <label className='form-label'for='startDate'>Start Date:</label>
+          <input className='form-control' id='startDate' type='date' name='startDate' onChange={(e) => setInput({...jobInput, [e.target.name]: e.target.value})} value={jobInput.name}/><br/><br/>
+          <label className='form-label'for='endDate'>End Date:</label>
+          <input className='form-control' id='startDate' type='date' name='endDate'onChange={(e) => setInput({...jobInput, [e.target.name]: e.target.value})} value={jobInput.name}/><br/><br/>
+          <button type='submit'>Submit</button>
+          </form>
+       </div>
 
        {
         jobExpData && jobExpData.map((job) => {
